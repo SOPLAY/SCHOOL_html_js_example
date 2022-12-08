@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+dialog{
+  padding:0px;
+  border:0px;
+}
+
 body{
   background-color: #e5e5e5;
 }
@@ -13,4 +18,16 @@ body{
 
 .red {
   color:red;
+}
+
+.modalContent{
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  padding :20px;
+  
+}
+
+#inputModal::backdrop{
+  background-color: rgba(0 , 0, 0, 0.7);
 }

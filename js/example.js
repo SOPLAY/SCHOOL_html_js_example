@@ -4,20 +4,37 @@ const $ = (str) => document.querySelector(str);
 
 const nameElement = $('h1.inline');
 const connectNameElement = $('span.red');
+const inputModalElement = $('#inputMadal');
+const modalSubmitBtn = $('button.modalSubmit');
 
-const localName = localStorage.getItem('name');
+const localName = localStorage.getItem('userName');
+
+const setName = (name) => {
+  nameElement.textContent = name;
+  connectNameElement.textContent = name;
+};
+
 if (localName) {
-  nameElement.textContent = localName;
-  connectNameElement.textContent = localName;
+  setName(localName);
 }
 
-nameElement.onclick = () => {
-  const inputName = prompt('이름을 입력해 주세요.');
-  if (inputName) {
-    localStorage.setItem('name', inputName);
-    nameElement.textContent = inputName;
-    connectNameElement.textContent = inputName;
-  } else {
-    alert('이름이 입력되지 않았습니다.');
+// modal open
+nameElement.onclick = () => inputModalElement.showModal();
+
+// modal btn click
+modalSubmitBtn.onclick = () => {
+  const modalFormElement = $('.modalForm');
+  const formData = new FormData(modalFormElement);
+  for (const [key, value] of formData) {
+    localStorage.setItem(key, value);
+    if (key === 'userName') {
+      setName(value);
+    }
+  }
+};
+
+inputModalElement.onclick = (event) => {
+  if (event.target.nodeName === 'DIALOG') {
+    inputModalElement.close();
   }
 };
