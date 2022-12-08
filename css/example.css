@@ -5,3 +5,12 @@
 body{
   background-color: #e5e5e5;
 }
+
+.inline {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.red {
+  color:red;
+}
